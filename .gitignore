@@ -1,0 +1,5 @@
+node_modules
+# IDE/Editor/vscode data
+.idea
+# .vscode
+.history
