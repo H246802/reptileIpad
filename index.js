@@ -37,7 +37,7 @@ function fetchData() {
   var link = "https://www.apple.com.cn/cn-k12/shop/refurbished/ipad";
   superagent.get(link).end(function (err, sres) {
     if (err) {
-      return next(err);
+      console.log(err)
     }
     let msg = getIpadMsg(sres.text);
     // 讯息短截取
