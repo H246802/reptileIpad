@@ -6,8 +6,6 @@
 ### 启动方式
 
 ```
-1. npm install
-```
-```
-2. node index.js
+npm install
+node index.js
 ```
