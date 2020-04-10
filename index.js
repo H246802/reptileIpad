@@ -7,9 +7,9 @@ const nodemailer = require("nodemailer");
 //转hash模块
 const fnv = require("fnv-plus");
 //盛放每次需要发送邮箱的内容
-let oldSendMsg1 = '';
-let oldSendMsg2 = '';
-let oldSendMsg3 = '';
+let oldSendMsg1 = "";
+let oldSendMsg2 = "";
+let oldSendMsg3 = "";
 console.log("start");
 
 let getIpadMsg = (html) => {
@@ -39,19 +39,19 @@ function fetchData() {
   var link = "https://www.apple.com.cn/cn-k12/shop/refurbished/ipad";
   superagent.get(link).end(function (err, sres) {
     if (err) {
-      console.log(err)
+      console.log(err);
     }
-    let msg = {}
+    let msg = {};
 
     try {
       msg = getIpadMsg(sres.text);
     } catch (error) {
       msg = {
-        title = []
-      }
+        title: [],
+      };
     }
-    if(!msg.tiles){
-      msg.tiles = []
+    if (!msg.tiles) {
+      msg.tiles = [];
     }
     // 讯息短截取
     let fn = (item) => {
@@ -117,9 +117,9 @@ function fetchData() {
     // console.log(text)
     if (ipad11.length) {
       let text = fn1(ipad11, "ipad 已经上了翻新机器了");
-      if(text != oldSendMsg1){
+      if (text != oldSendMsg1) {
         console.log("我想买的有货了", JSON.stringify(sendMsg));
-        oldSendMsg1 = text
+        oldSendMsg1 = text;
         sendmail({
           html: text,
           subject: "ipad 11 pro 更新了",
@@ -128,8 +128,8 @@ function fetchData() {
     }
     if (ipadaccessories.length) {
       let text = fn1(ipadaccessories, "ipad 配件有翻新了");
-      if(text != oldSendMsg2){
-        oldSendMsg2 = text
+      if (text != oldSendMsg2) {
+        oldSendMsg2 = text;
         sendmail({
           html: text,
           subject: "ipad 有配件上翻新了",
