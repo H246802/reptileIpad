@@ -41,7 +41,18 @@ function fetchData() {
     if (err) {
       console.log(err)
     }
-    let msg = getIpadMsg(sres.text);
+    let msg = {}
+
+    try {
+      msg = getIpadMsg(sres.text);
+    } catch (error) {
+      msg = {
+        title = []
+      }
+    }
+    if(!msg.tiles){
+      msg.tiles = []
+    }
     // 讯息短截取
     let fn = (item) => {
       let url = item.productDetailsUrl;
@@ -98,7 +109,6 @@ function fetchData() {
         return item.filters.dimensions.refurbClearModel == "ipadaccessories";
       })
       .map(fn);
-    // console.log(msg);
     console.log(ipad129, ipad11, ipadmini5, ipadair, ipadaccessories);
 
     let sendMsg = ipad129;
