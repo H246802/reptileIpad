@@ -6,8 +6,10 @@ const schedule = require("node-schedule");
 const nodemailer = require("nodemailer");
 //转hash模块
 const fnv = require("fnv-plus");
-//盛放每次抓取的内容
-let items = [];
+//盛放每次需要发送邮箱的内容
+let oldSendMsg1 = '';
+let oldSendMsg2 = '';
+let oldSendMsg3 = '';
 console.log("start");
 
 let getIpadMsg = (html) => {
@@ -105,19 +107,35 @@ function fetchData() {
     // console.log(text)
     if (ipad11.length) {
       let text = fn1(ipad11, "ipad 已经上了翻新机器了");
-      console.log("我想买的有货了", JSON.stringify(sendMsg));
-      sendmail({
-        text: text,
-        subject: "ipad 11 pro 有货了",
-      });
+      if(text != oldSendMsg1){
+        console.log("我想买的有货了", JSON.stringify(sendMsg));
+        oldSendMsg1 = text
+        sendmail({
+          text: text,
+          subject: "ipad 11 pro 更新了",
+        });
+      }
     }
     if (ipadaccessories.length) {
       let text = fn1(ipadaccessories, "ipad 配件有翻新了");
-      sendmail({
-        text: text,
-        subject: "ipad 有配件上翻新了",
-      });
+      if(text != oldSendMsg2){
+        oldSendMsg2 = text
+        sendmail({
+          text: text,
+          subject: "ipad 有配件上翻新了",
+        });
+      }
     }
+    // if(ipad129.length){
+    //   let text = fn1(ipad129, "ipad 配件有翻新了");
+    //   if(text != oldSendMsg3){
+    //     oldSendMsg3 = text
+    //     sendmail({
+    //       text: text,
+    //       subject: "ipad 12.9 上翻新了",
+    //     });
+    //   }
+    // }
     // sendmail({
     //   html:text
     // })
