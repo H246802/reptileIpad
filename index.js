@@ -111,7 +111,7 @@ function fetchData() {
         console.log("我想买的有货了", JSON.stringify(sendMsg));
         oldSendMsg1 = text
         sendmail({
-          text: text,
+          html: text,
           subject: "ipad 11 pro 更新了",
         });
       }
@@ -121,7 +121,7 @@ function fetchData() {
       if(text != oldSendMsg2){
         oldSendMsg2 = text
         sendmail({
-          text: text,
+          html: text,
           subject: "ipad 有配件上翻新了",
         });
       }
@@ -131,7 +131,7 @@ function fetchData() {
     //   if(text != oldSendMsg3){
     //     oldSendMsg3 = text
     //     sendmail({
-    //       text: text,
+    //       html: text,
     //       subject: "ipad 12.9 上翻新了",
     //     });
     //   }
