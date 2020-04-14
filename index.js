@@ -115,7 +115,7 @@ function fetchData() {
       })
       .map(fn);
     console.log(ipad129, ipad11, ipadmini5, ipadair, ipadaccessories);
-
+    console.log('---------------------------------\r\r\r')
     let sendMsg = ipad129;
 
     // let text = fn1(sendMsg, '订阅的信息有了')
