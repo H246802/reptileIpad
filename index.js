@@ -45,9 +45,14 @@ function fetchData() {
 
     try {
       msg = getIpadMsg(sres.text);
+      if(typeof msg !== 'object'){
+        msg = {
+          tiles: [],
+        }
+      }
     } catch (error) {
       msg = {
-        title: [],
+        tiles: [],
       };
     }
     if (!msg.tiles) {
