@@ -5,7 +5,8 @@ const schedule = require("node-schedule");
 //nodemailer模块邮箱发送
 const nodemailer = require("nodemailer");
 //转hash模块
-const fnv = require("fnv-plus");
+const moment = require("moment");
+let queryNum = 0;
 //盛放每次需要发送邮箱的内容
 let oldSendMsg1 = "";
 let oldSendMsg2 = "";
@@ -45,10 +46,10 @@ function fetchData() {
 
     try {
       msg = getIpadMsg(sres.text);
-      if(typeof msg !== 'object'){
+      if (typeof msg !== "object") {
         msg = {
           tiles: [],
-        }
+        };
       }
     } catch (error) {
       msg = {
@@ -114,8 +115,17 @@ function fetchData() {
         return item.filters.dimensions.refurbClearModel == "ipadaccessories";
       })
       .map(fn);
+
+    queryNum = ++queryNum;
+
     console.log(ipad129, ipad11, ipadmini5, ipadair, ipadaccessories);
-    console.log('---------------------------------\r\r\r')
+    console.log(
+      "查询次数:",
+      queryNum,
+      "当前时间:",
+      moment().format('DD日HH:mm:ss'),
+      "---------------------------------\r\r\r"
+    );
     let sendMsg = ipad129;
 
     // let text = fn1(sendMsg, '订阅的信息有了')
